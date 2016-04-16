@@ -6,32 +6,61 @@
  * April 6th, 2016
  */
 
-
 Class Autoload {
-  public static $classMap; 
+  public static $config; 
+  private static $__namespaces = NULL;
+  
+  public function __construct() {
+    
+    /**
+     * List all core
+     */
+    if(static::$__namespaces == NULL) {
+      foreach(static::$config['Namespaces'] as $alias => $namespace) {
+        $file = strtr($namespace, '\\' , DIRECTORY_SEPARATOR). '.php';
+        $pathinfo = pathinfo($file);
+                
+        $dir = strtolower($pathinfo['dirname']);
+        $ext = $pathinfo['extension'];
+        $class = $pathinfo['filename'];
 
-  public static function load($class) {
-
-    // Load Core
-    foreach(static::$classMap['Namespaces'] as $alias => $file) {
-      
-      $file = strtr($file, '\\' , DIRECTORY_SEPARATOR). '.php';
-      $dir = dirname($file . '.php');
-      $filename = basename($file);
-
-      if( !class_exists(substr($filename, 0, -4))) {
-        includeFile(ROOT_APP . strtolower($dir) . DIRECTORY_SEPARATOR . $filename);  
+        static::$__namespaces[$namespace] = ROOT_APP. $dir.DIRECTORY_SEPARATOR.$class. '.' .$ext;
       }
-      
     }
 
-    return true;
   }
+
+/**
+ * Autoload
+ */
+  public function register() {
+    spl_autoload_register(array($this, 'loadClass'), true, true);
+  }
+
+
+/**
+ * LoadClass
+ */
+  public static function loadClass($class) {
+    $class = '\\'.$class;
+    if(isset(static::$__namespaces[$class]) && is_file(static::$__namespaces[$class])) {
+      includeFile(static::$__namespaces[$class]);
+
+      return true;
+    }
+    return false;
+  }
+
 }
 
 function includeFile($file) {
-  require_once $file;
+  include $file;
 }
 
-Autoload::$classMap = require(ROOT_APP . '/src/config.php');
-spl_autoload_register(['Autoload', 'load']);
+
+Autoload::$config = require(ROOT_APP . '/src/config.php');
+(new Autoload)->register();
+
+
+
+

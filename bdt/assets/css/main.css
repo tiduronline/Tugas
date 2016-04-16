@@ -1,0 +1,118 @@
+body {}
+
+div.navigator { text-align: center; min-width: 465px; }
+div.navigator a {
+  color: #1C1C1C;
+  display: inline-block;
+  min-width: 50px;
+  margin: 10px 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ffffff;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+div.navigator a:hover {
+  border-bottom: 1px solid #908E8E;
+}
+
+header {
+  position: relative;
+}
+
+.app-icon {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+}
+
+.app-icon img {
+  width: 35px;  
+}
+
+#content {
+  margin-bottom: 100px;
+  z-index:1;
+}
+
+#content .btn-values {
+  color: #414141!important;
+  text-align: center;
+}
+
+#content .btn-values a.btn {
+  background: #ffffff;
+  color: #414141!important;
+}
+
+#content .btn-values a.btn:hover,
+#content .btn-values a.btn.active {
+  background: #bdbdbd;
+}
+
+#content #submit {
+  margin: 50px 0;
+}
+
+#content .result-title h5 {
+  font-weight: 500;
+}
+#content .result-title .sub {
+  font-size: .8em;
+}
+
+#content .table-results {
+  margin: 70px 0;
+}
+#content .table-results li {
+  display: inline-block;
+  border: 1px solid #B3B3B3;
+  border-radius: 10px;
+  background: #B3B3B3;
+  margin: 20px;
+}
+
+#content .table-results li div:last-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+#content .table-results li .persentase {
+  display: block;
+  background: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #00e676;
+  padding: 40px;
+  font-size: 5em;
+  letter-spacing: -5px;
+  font-weight: bold;
+}
+
+
+
+.feature-title { text-align: center; margin: 100px 0;}
+.feature-title h4 { font-weight: bold; }
+.feature-title h4 span {
+  border: 1px solid #ABABAB;
+  border-radius: 5px;
+  padding: 5px 50px;
+}
+
+.feature-title article {
+  margin: 50px 0;
+  display: block;
+}
+
+footer {
+  color: #1C1C1C;
+  text-align: center;
+  font-size: .8em;
+  margin: 0;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 10;
+}
